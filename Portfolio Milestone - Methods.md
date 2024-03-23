@@ -15,10 +15,10 @@ To maintain focus on the methods, the program logic and declaration of variables
 The purpose of this class is to hold attributes of a single vehicle, like its vin, make, model, color, and other inherent details. It also contains public methods to construct the object and to update mutable attributes.
 
 ### Default Constructor Method
+Set private class fields to default values
 
 ```pseudocode
 public Automobile() {
-   // Set private class fields to default values
    SET: this.vin TO ""
    SET: this.make TO ""
    SET: this.model TO ""
@@ -29,10 +29,10 @@ public Automobile() {
 ```
 
 ### Parameterized Constructor Method
+Set private class fields to parameter values
 
 ```pseudocode
 public Automobile(String vin, String make, String model, String color, int year, int mileage) {
-   // Set private class fields to parameter values
    SET: this.vin TO vin
    SET: this.make TO make
    SET: this.model TO model
@@ -43,28 +43,28 @@ public Automobile(String vin, String make, String model, String color, int year,
 ```
 
 ### Update Color Attribute
-
+Set private class field to parameter value
 ```pseudocode
 public void updateColor(String color) {
-   // Set private class field to parameter value
    SET: this.color TO color
 }
 ```
 
 ### Update Mileage Attribute
+Set private class field to parameter value
 
 ```pseudocode
 public void updateMileage(int mileage) {
-   // Set private class field to parameter value
    SET: this.mileage TO mileage
 }
 ```
 
 ### Get VIN
+Return the value of private field "vin"
 
 ```pseudocode
 public String getVin() {
-   RETURN: value of the private variable "vin"
+   RETURN: this.vin
 }
 ```
 
@@ -73,23 +73,25 @@ public String getVin() {
 The purpose of this class is to provide a user interface for accessing and using the inventory. This class will contain an ArrayList of type Automobile which holds the objects.
 
 ### Add New Vehicle
+Return a new vehicle object with the instance fields populated (additional program logic will add this object to the inventory array)
 
 ```pseudocode
-public boolean addVehicle(String vin, String make, String model, String color, int year, int mileage) {
+public Automobile addVehicle(String vin, String make, String model, String color, int year, int mileage) {
    TRY:
       SEARCH inventory for vin
       IF vin does not already exist:
-            INSTANTIATE a new object of type Automobile using the provided parameters
-            RETURN True
+            INSTANTIATE a new object "automobile" of type Automobile using the provided parameters
+            RETURN automobile
       ELSE:
-         RETURN False
+         RETURN null
    EXCEPT:
       Log exception
-      RETURN False
+      RETURN null
 }
 ```
 
 ### Remove a Vehicle
+Remove a vehicle from inventory arraylist based on its vin
 
 ```pseudocode
 public boolean removeVehicle(String vin) {
@@ -107,14 +109,15 @@ public boolean removeVehicle(String vin) {
 ```
 
 ### Retrieve Vehicle Information
+Return an object corresponding to the provided vin
 
 ```pseudocode
 public Automobile showVehicle(String vin) {
-   INSTANTIATE a new empty Automobile object "vehicle"
+   INSTANTIATE a new empty Automobile object "automobile"
    TRY:
-      SEARCH inventory arraylist for the vin provided and store in "vehicle"
+      SEARCH inventory arraylist for the vin provided and store in "automobile"
       IF found:
-         RETURN vehicle
+         RETURN automobile
       ELSE:
          RETURN null
    EXCEPT:
@@ -124,11 +127,12 @@ public Automobile showVehicle(String vin) {
 ```
 
 ### Update Vehicle Attributes
+Update mutable attributes per user preference (In implementation, this may work better as separate methods for each attribute).
 
-Note that only the alterable attributes like mileage and color can change. The Vin, Year, Make, Model should never change.
+**Note:** Only the alterable attributes like mileage and color can change. The Vin, Year, Make, Model should never change.
 
 ```pseudocode
-public boolean updateAttribute(String vin, String attribute, String value) {
+public boolean updateAttribute(String vin, String attribute, int value) {
    TRY:
       SEARCH inventory arraylist for the vin
       IF found:
@@ -156,6 +160,7 @@ public boolean updateAttribute(String vin, String attribute, String value) {
 ```
 
 ### List All Vehicles
+Retrieve and print each vehicle in formatted output
 
 ```pseudocode
 public void showAllVehicles() {
