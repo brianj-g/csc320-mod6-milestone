@@ -164,7 +164,7 @@ public boolean updateAttribute(String vin, String attribute, int value) {
          VALIDATE attribute, RETURN False if invalid
 
          SWITCH attribute:
-            color:   CALL updateMileage
+            mileage:   CALL updateMileage
             default: RETURN False
 
          RETURN True
