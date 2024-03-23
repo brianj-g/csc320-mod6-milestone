@@ -126,10 +126,35 @@ public Automobile showVehicle(String vin) {
 }
 ```
 
-### Update Vehicle Attributes
-Update mutable attributes per user preference (In implementation, this may work better as separate methods for each attribute).
+### Update Vehicle Attributes (String overload)
+Update **String** attributes per user preference.
 
-**Note:** Only the alterable attributes like mileage and color can change. The Vin, Year, Make, Model should never change.
+**Note:** Only the mutable attributes like mileage and color can change. The Vin, Year, Make, Model should never change.
+
+```pseudocode
+public boolean updateAttribute(String vin, String attribute, String value) {
+   TRY:
+      SEARCH inventory arraylist for the vin
+      IF found:
+         VALIDATE attribute, RETURN False if invalid
+
+         SWITCH attribute:
+            color:   CALL updateColor
+            default: RETURN False
+
+         RETURN True
+      ELSE:
+         RETURN False
+   EXCEPT:
+      Log exception
+      RETURN False
+}
+```
+
+### Update Vehicle Attributes (Integer overload)
+Update **integer** attributes per user preference.
+
+**Note:** Only the mutable attributes like mileage and color can change. The Vin, Year, Make, Model should never change.
 
 ```pseudocode
 public boolean updateAttribute(String vin, String attribute, int value) {
@@ -138,16 +163,8 @@ public boolean updateAttribute(String vin, String attribute, int value) {
       IF found:
          VALIDATE attribute, RETURN False if invalid
 
-         IF attribute is type int:
-            TRY:
-               CONVERT value to int
-            EXCEPT:
-               Log exception
-               RETURN False
-
          SWITCH attribute:
-            mileage: CALL updateMileage
-            color:   CALL updateColor
+            color:   CALL updateMileage
             default: RETURN False
 
          RETURN True
